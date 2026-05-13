@@ -56,7 +56,7 @@ Você precisará instalar e rodar os serviços de infraestrutura diretamente na 
 
 1. Clone este repositório unificado:
    ```bash
-   git clone github.com
+   git clone [github.com](https://github.com/HallefBruno/sales-event-architecture.git)
    cd sales-event-architecture
    ```
 2. Certifique-se de que o PostgreSQL e o RabbitMQ locais estão online.
