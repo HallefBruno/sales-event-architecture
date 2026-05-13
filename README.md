@@ -57,7 +57,7 @@ Você precisará instalar e rodar os serviços de infraestrutura diretamente na 
 1. Clone este repositório unificado:
    ```bash
    git clone github.com
-   cd seu-repositorio
+   cd sales-event-architecture
    ```
 2. Certifique-se de que o PostgreSQL e o RabbitMQ locais estão online.
 3. Abra e execute o projeto **Order Service** (porta padrão: `8080`).
