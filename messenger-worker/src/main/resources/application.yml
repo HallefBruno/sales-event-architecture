@@ -1,0 +1,42 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sales
+    username: postgres
+    password: 91696192
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        highlight_sql: true
+        
+  rabbitmq:
+    listener:
+      simple:
+        retry:
+          # Ativa o mecanismo de retentativas automáticas em caso de erro no processamento
+          enabled: true
+          # Tempo de espera antes da primeira retentativa (3 segundos)
+          initial-interval: 3000ms
+          # Número máximo de tentativas de processamento (1 original + 2 retentativas)
+          max-attempts: 3
+          # Tempo máximo de espera permitido entre as retentativas (10 segundos)
+          max-interval: 10000ms
+          # Fator de multiplicação para o tempo de espera (3s, depois 6s...) - Backoff Exponencial
+          multiplier: 2.0
+        # Se esgotar as tentativas, NÃO devolve para a fila original (evita loop infinito).
+        # A mensagem vai para a DLQ (se configurada) ou é descartada.
+        default-requeue-rejected: false
+
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE 
+    org.springframework.amqp: DEBUG
